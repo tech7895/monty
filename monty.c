@@ -1,9 +1,10 @@
 #include "monty.h"
+
 stack_t *head = NULL;
 
 /**
- * main - entry point
- * @argc: the number of argument count
+ * main - Entry point
+ * @argc: the number of arguments
  * @argv: the argument vector
  *
  * Return: 0 (Success)
@@ -18,13 +19,15 @@ int main(int argc, char *argv[])
 	}
 	_fileop(argv[1]);
 	_nodfree();
+
 	return (0);
 }
 
 /**
- * create_node - Creates a node.
- * @n: Number to go inside the node.
- * Return: Upon sucess a pointer to the node. Otherwise NULL.
+ * create_node - This function creates a node
+ * @n: the number of the node
+ *
+ * Return: a pointer to the node otherwise NULL
  */
 stack_t *create_node(int n)
 {
@@ -36,36 +39,38 @@ stack_t *create_node(int n)
 	node->next = NULL;
 	node->prev = NULL;
 	node->n = n;
+
 	return (node);
 }
 
 /**
- * _nodfree - Frees nodes in the stack.
+ * _nodfree - This frees nodes in the stack
+ *
  */
 void _nodfree(void)
 {
-	stack_t *tmp;
+	stack_t *tempo;
 
 	if (head == NULL)
 		return;
 
 	while (head != NULL)
 	{
-		tmp = head;
+		tempo = head;
 		head = head->next;
-		free(tmp);
+		free(tempo);
 	}
 }
 
 
 /**
- * add_to_queue - Adds a node to the queue.
- * @new_node: Pointer to the new node.
- * @ln: line number of the opcode.
+ * add_to_queue - This adds a node to the queue
+ * @new_node: the new node
+ * @ln: the line number
  */
 void add_to_queue(stack_t **new_node, __attribute__((unused))unsigned int ln)
 {
-	stack_t *tmp;
+	stack_t *tempo;
 
 	if (new_node == NULL || *new_node == NULL)
 		exit(EXIT_FAILURE);
@@ -74,11 +79,11 @@ void add_to_queue(stack_t **new_node, __attribute__((unused))unsigned int ln)
 		head = *new_node;
 		return;
 	}
-	tmp = head;
-	while (tmp->next != NULL)
-		tmp = tmp->next;
+	tempo = head;
+	while (tempo->next != NULL)
+		tempo = tempo->next;
 
-	tmp->next = *new_node;
-	(*new_node)->prev = tmp;
+	tempo->next = *new_node;
+	(*new_node)->prev = tempo;
 
 }

@@ -28,7 +28,7 @@ void ch_print(stack_t **stack, unsigned int line_number)
 void str_print(stack_t **stack, __attribute__((unused))unsigned int ln)
 {
 	int ascii;
-	stack_t *tmp;
+	stack_t *tempo;
 
 	if (stack == NULL || *stack == NULL)
 	{
@@ -36,14 +36,14 @@ void str_print(stack_t **stack, __attribute__((unused))unsigned int ln)
 		return;
 	}
 
-	tmp = *stack;
-	while (tmp != NULL)
+	tempo = *stack;
+	while (tempo != NULL)
 	{
-		ascii = tmp->n;
+		ascii = tempo->n;
 		if (ascii <= 0 || ascii > 127)
 			break;
 		printf("%c", ascii);
-		tmp = tmp->next;
+		tempo = tempo->next;
 	}
 	printf("\n");
 }
@@ -55,17 +55,17 @@ void str_print(stack_t **stack, __attribute__((unused))unsigned int ln)
  */
 void rotl(stack_t **stack, __attribute__((unused))unsigned int ln)
 {
-	stack_t *tmp;
+	stack_t *tempo;
 
 	if (stack == NULL || *stack == NULL || (*stack)->next == NULL)
 		return;
 
-	tmp = *stack;
-	while (tmp->next != NULL)
-		tmp = tmp->next;
+	tempo = *stack;
+	while (tempo->next != NULL)
+		tempo = tempo->next;
 
-	tmp->next = *stack;
-	(*stack)->prev = tmp;
+	tempo->next = *stack;
+	(*stack)->prev = tempo;
 	*stack = (*stack)->next;
 	(*stack)->prev->next = NULL;
 	(*stack)->prev = NULL;
@@ -79,19 +79,19 @@ void rotl(stack_t **stack, __attribute__((unused))unsigned int ln)
  */
 void rotr(stack_t **stack, __attribute__((unused))unsigned int ln)
 {
-	stack_t *tmp;
+	stack_t *tempo;
 
 	if (stack == NULL || *stack == NULL || (*stack)->next == NULL)
 		return;
 
-	tmp = *stack;
+	tempo = *stack;
 
-	while (tmp->next != NULL)
-		tmp = tmp->next;
+	while (tempo->next != NULL)
+		tempo = tempo->next;
 
-	tmp->next = *stack;
-	tmp->prev->next = NULL;
-	tmp->prev = NULL;
-	(*stack)->prev = tmp;
-	(*stack) = tmp;
+	tempo->next = *stack;
+	tempo->prev->next = NULL;
+	tempo->prev = NULL;
+	(*stack)->prev = tempo;
+	(*stack) = tempo;
 }

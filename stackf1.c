@@ -10,7 +10,7 @@
  */
 void _stackadd(stack_t **new_node, __attribute__((unused))unsigned int ln)
 {
-	stack_t *tmp;
+	stack_t *tempo;
 
 	if (new_node == NULL || *new_node == NULL)
 		exit(EXIT_FAILURE);
@@ -19,10 +19,10 @@ void _stackadd(stack_t **new_node, __attribute__((unused))unsigned int ln)
 		head = *new_node;
 		return;
 	}
-	tmp = head;
+	tempo = head;
 	head = *new_node;
-	head->next = tmp;
-	tmp->prev = head;
+	head->next = tempo;
+	tempo->prev = head;
 }
 
 
@@ -33,16 +33,16 @@ void _stackadd(stack_t **new_node, __attribute__((unused))unsigned int ln)
  */
 void _stackprnt(stack_t **stack, unsigned int line_number)
 {
-	stack_t *tmp;
+	stack_t *tempo;
 
 	(void) line_number;
 	if (stack == NULL)
 		exit(EXIT_FAILURE);
-	tmp = *stack;
-	while (tmp != NULL)
+	tempo = *stack;
+	while (tempo != NULL)
 	{
-		printf("%d\n", tmp->n);
-		tmp = tmp->next;
+		printf("%d\n", tempo->n);
+		tempo = tempo->next;
 	}
 }
 
@@ -53,16 +53,16 @@ void _stackprnt(stack_t **stack, unsigned int line_number)
  */
 void pop_top(stack_t **stack, unsigned int line_number)
 {
-	stack_t *tmp;
+	stack_t *tempo;
 
 	if (stack == NULL || *stack == NULL)
 		err_plus(7, line_number);
 
-	tmp = *stack;
-	*stack = tmp->next;
+	tempo = *stack;
+	*stack = tempo->next;
 	if (*stack != NULL)
 		(*stack)->prev = NULL;
-	free(tmp);
+	free(tempo);
 }
 
 /**
