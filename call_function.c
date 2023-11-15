@@ -1,27 +1,28 @@
 #include "monty.h"
 
 /**
- * function_call - Calls the required function.
- * @func: Pointer to the function that is about to be called.
- * @op: string representing the opcode.
- * @val: string representing a numeric value.
- * @ln: line numeber for the instruction.
- * @format: Format specifier. If 0 Nodes will be entered as a stack.
- * if 1 nodes will be entered as a queue.
+ * function_call - This function alls the required function
+ * @func: a Pointer to the function
+ * @op: a string representing the opcode
+ * @val: the numeric value
+ * @ln: the line numeber
+ * @format: a format specifier
+ *
+ * Return: void
  */
 void function_call(op_func func, char *op, char *val, int ln, int format)
 {
 	stack_t *node;
-	int flag;
+	int fl;
 	int i;
 
-	flag = 1;
+	fl = 1;
 	if (strcmp(op, "push") == 0)
 	{
 		if (val != NULL && val[0] == '-')
 		{
 			val = val + 1;
-			flag = -1;
+			fl = -1;
 		}
 		if (val == NULL)
 			err(5, ln);
@@ -30,7 +31,7 @@ void function_call(op_func func, char *op, char *val, int ln, int format)
 			if (isdigit(val[i]) == 0)
 				err(5, ln);
 		}
-		node = create_node(atoi(val) * flag);
+		node = create_node(atoi(val) * fl);
 		if (format == 0)
 			func(&node, ln);
 		if (format == 1)
