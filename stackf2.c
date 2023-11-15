@@ -1,7 +1,7 @@
 #include "monty.h"
 
 /**
- * nop - This function does nothing
+ * nop - This function performs a no-operation (NOP)
  * @stack: the top node of the stack
  * @line_number: the line number of of the opcode
  *
@@ -15,9 +15,10 @@ void nop(stack_t **stack, unsigned int line_number)
 
 
 /**
- * swap_nodes - Swaps the top two elements of the stack.
- * @stack: Pointer to a pointer pointing to top node of the stack.
- * @line_number: Interger representing the line number of of the opcode.
+ * swap_nodes - This function swaps the top two elements of the stack
+ * @stack: the top node of the stack
+ * @line_number: the line number of of the opcode
+ *
  */
 void swap_nodes(stack_t **stack, unsigned int line_number)
 {
@@ -36,55 +37,55 @@ void swap_nodes(stack_t **stack, unsigned int line_number)
 }
 
 /**
- * b_add - Adds the top two elements of the stack.
- * @stack: Pointer to a pointer pointing to top node of the stack.
- * @line_number: Interger representing the line number of of the opcode.
+ * b_add - This adds the top two elements of the stack
+ * @stack: the top node of the stack
+ * @line_number: the line number of of the opcode
  */
 void b_add(stack_t **stack, unsigned int line_number)
 {
-	int sum;
+	int add;
 
 	if (stack == NULL || *stack == NULL || (*stack)->next == NULL)
 		err_plus(8, line_number, "add");
 
 	(*stack) = (*stack)->next;
-	sum = (*stack)->n + (*stack)->prev->n;
-	(*stack)->n = sum;
+	add = (*stack)->n + (*stack)->prev->n;
+	(*stack)->n = add;
 	free((*stack)->prev);
 	(*stack)->prev = NULL;
 }
 
 
 /**
- * b_sub - Adds the top two elements of the stack.
- * @stack: Pointer to a pointer pointing to top node of the stack.
- * @line_number: Interger representing the line number of of the opcode.
+ * b_sub - This adds the top two elements of the stack
+ * @stack: the top node of the stack
+ * @line_number: the line number of of the opcode
+ *
  */
 void b_sub(stack_t **stack, unsigned int line_number)
 {
-	int sum;
+	int add;
 
 	if (stack == NULL || *stack == NULL || (*stack)->next == NULL)
 
 		err_plus(8, line_number, "sub");
 
-
 	(*stack) = (*stack)->next;
-	sum = (*stack)->n - (*stack)->prev->n;
-	(*stack)->n = sum;
+	add = (*stack)->n - (*stack)->prev->n;
+	(*stack)->n = add;
 	free((*stack)->prev);
 	(*stack)->prev = NULL;
 }
 
-
 /**
- * b_div - Adds the top two elements of the stack.
- * @stack: Pointer to a pointer pointing to top node of the stack.
- * @line_number: Interger representing the line number of of the opcode.
+ * b_div - This adds the top two elements of the stack
+ * @stack: the top node of the stack.
+ * @line_number: the line number of of the opcode
+ *
  */
 void b_div(stack_t **stack, unsigned int line_number)
 {
-	int sum;
+	int add;
 
 	if (stack == NULL || *stack == NULL || (*stack)->next == NULL)
 		err_plus(8, line_number, "div");
@@ -92,8 +93,8 @@ void b_div(stack_t **stack, unsigned int line_number)
 	if ((*stack)->n == 0)
 		err_plus(9, line_number);
 	(*stack) = (*stack)->next;
-	sum = (*stack)->n / (*stack)->prev->n;
-	(*stack)->n = sum;
+	add = (*stack)->n / (*stack)->prev->n;
+	(*stack)->n = add;
 	free((*stack)->prev);
 	(*stack)->prev = NULL;
 }
