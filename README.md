@@ -1,3 +1,3 @@
-This repository contains the project
------------------------------------
+This Directory contains the project;
+----------------------------------
 0x19. C - Stacks, Queues - LIFO, FIFO

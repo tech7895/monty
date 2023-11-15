@@ -1,6 +1,14 @@
->,------------------------------------------------ # read into #1
->,------------------------------------------------ # read into #2
-[<[>>+<<<+>-]>>[<<+>>-] COPY BLOCK 1 INTO BLOCK 3 AND 0 THEN COPY BLOCK 3 BACK TO BLOCK 1
-<-] MOVE BLOCK TO BLOCK 2 AND DECREASE (DONE WITH ONE ITERATION)
-# MOVE TO BLOCK 0 AND INCREASE BY ASCII '0' (DEC 48)
-<<++++++++++++++++++++++++++++++++++++++++++++++++.
+ ++++[>++++[>+++<-]<-]   writing 48 / 0x30 / '0' in cell(2)
+    ,>,>                    reading two numbers in cell(0) and cell(1)
+    [<-<->>-]               decrementing cell(0) and cell(1) by 48 / 0x30 / '0'
+    <<                      go to cell(0)
+    [                       mulitplication loop
+        >                   go to cell(1)
+        [>+>+<<-]           move cell(1) to cell(2) and cell(3)
+        >>                  go to cell(3)
+        [<<+>>-]            move cell(3) back to cell(1)
+        <<<-                decrement cell(0)
+    ]
+    >[-]<                   set cell(1) to 0 so that it can be used as counter (we are in cell 0 here)
+    ++++[>++++[>+++<-]<-]   adding 48 / 0x30 / '0' to cell(2) cell 2 has the result
+    >>.                     print result (go to cell 2 and print)
